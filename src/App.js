@@ -7,6 +7,7 @@ import Modal from './components/Modal';
 function App() {
   const [taskList, setTaskList] = useState([]);
   const [showAddBtn, setShowAddBtn] = useState(false);
+  const jsonServer = 'https://json-server-for-to-do-list.herokuapp.com/tasks';
 
   useEffect(() => {
     const getTasks = async () => {
@@ -19,21 +20,21 @@ function App() {
   }, []);
 
   const fetchTasks = async () => {
-    const res = await fetch('http://localhost:5000/tasks');
+    const res = await fetch(jsonServer);
     const data = await res.json();
 
     return data;
   };
 
   const fetchTask = async (id) => {
-    const res = await fetch(`http://localhost:5000/tasks/${id}`);
+    const res = await fetch(`${jsonServer}/${id}`);
     const data = await res.json();
 
     return data;
   };
 
   const deleteTask = async (id) => {
-    await fetch(`http://localhost:5000/tasks/${id}`, {
+    await fetch(`${jsonServer}/${id}`, {
       method: 'DELETE',
     });
 
@@ -45,7 +46,7 @@ function App() {
 
     const updatedTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
 
-    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+    const res = await fetch(`${jsonServer}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json',
@@ -67,7 +68,7 @@ function App() {
 
     console.log('task: ', task);
 
-    const res = await fetch('http://localhost:5000/tasks', {
+    const res = await fetch(jsonServer, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
