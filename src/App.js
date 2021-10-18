@@ -64,10 +64,6 @@ function App() {
   };
 
   const addTask = async (task) => {
-    const id = Math.floor(Math.random() * 10000);
-
-    console.log('task: ', task);
-
     const res = await fetch(jsonServer, {
       method: 'POST',
       headers: {
