@@ -6,7 +6,7 @@ const AddTask = ({ onAdd }) => {
   const [text, setText] = useState('');
   const [day, setDay] = useState('');
   const [reminder, setReminder] = useState(false);
-  const [calDate, setCalDate] = useState(new Date());
+  // const [calDate, setCalDate] = useState(new Date());
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -42,14 +42,14 @@ const AddTask = ({ onAdd }) => {
       </div>
       <div className="form-control">
         <label>Day</label>
-        {/* <input
+        <input
           type="text"
           placeholder="Day"
           value={day}
           onChange={(e) => setDay(e.target.value)}
           style={{ backgroundColor: 'mistyrose' }}
-        /> */}
-        <Calendar onChange={onChange} value={calDate} />
+        />
+        {/* <Calendar onChange={onChange} value={calDate} /> */}
       </div>
       <div className="form-control form-control-check">
         <label>Reminder</label>
