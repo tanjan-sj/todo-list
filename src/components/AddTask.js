@@ -1,12 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
-import Calendar from 'react-calendar';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
-const AddTask = ({ onAdd }) => {
+const AddTask = ({ onAdd, close }) => {
   const [text, setText] = useState('');
-  const [day, setDay] = useState('');
   const [reminder, setReminder] = useState(false);
-  // const [calDate, setCalDate] = useState(new Date());
+  const [day, setDay] = useState(new Date());
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -19,14 +19,11 @@ const AddTask = ({ onAdd }) => {
     onAdd({ text, day, reminder });
 
     setText('');
-    setDay('');
+    setDay(new Date());
     setReminder(false);
-  };
 
-  function onChange(calDate) {
-    // change results based on calendar date click
-    setCalDate(calDate);
-  }
+    close();
+  };
 
   return (
     <form className="add-form" onSubmit={onSubmit}>
@@ -37,19 +34,19 @@ const AddTask = ({ onAdd }) => {
           placeholder="Add Task"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          style={{ backgroundColor: 'mistyrose' }}
+          style={{ backgroundColor: 'antiquewhite' }}
         />
       </div>
       <div className="form-control">
         <label>Day</label>
-        <input
-          type="text"
-          placeholder="Day"
-          value={day}
-          onChange={(e) => setDay(e.target.value)}
-          style={{ backgroundColor: 'mistyrose' }}
+        <DatePicker
+          selected={day}
+          minDate={new Date()}
+          onChange={(val) => {
+            console.log(moment(new Date(val)).format('YYYY-MM-DD'));
+            setDay(new Date(val));
+          }}
         />
-        {/* <Calendar onChange={onChange} value={calDate} /> */}
       </div>
       <div className="form-control form-control-check">
         <label>Reminder</label>

@@ -1,6 +1,7 @@
 import './App.css';
 import Header from './components/Header';
 import Tasks from './components/Tasks';
+
 import { useState, useEffect } from 'react';
 import Modal from './components/Modal';
 
@@ -86,6 +87,8 @@ function App() {
           onAdd={addTask}
         />
       )}
+
+      {/* {showAddBtn && <AddTask onAdd={addTask} />} */}
 
       {taskList.length > 0 ? (
         <Tasks

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
+import moment from 'moment';
 
 const Task = ({ task, onDelete, onToggle }) => {
   return (
@@ -15,7 +16,7 @@ const Task = ({ task, onDelete, onToggle }) => {
           onClick={() => onDelete(task.id)}
         />
       </h3>
-      <p> {task.day} </p>
+      <p> {moment(new Date(task.day)).format('MMMM DD, YYYY')} </p>
     </div>
   );
 };
